@@ -1,9 +1,12 @@
 const client = require("@sendgrid/mail")
 const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL, SENDGRID_FROM_EMAIL } = process.env
 
+
 exports.handler = async function (event, context, callback) {
   const { message, senderEmail, senderName } = JSON.parse(event.body)
   client.setApiKey(SENDGRID_API_KEY)
+
+  console.log("fsdfs")
 
   const data = {
     to: SENDGRID_TO_EMAIL,

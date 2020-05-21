@@ -1,5 +1,6 @@
 [build]
   publish = "dist"
+  command = "gridsome build"
   functions = './functions/'
 [[redirects]]
   from = "/api/*"

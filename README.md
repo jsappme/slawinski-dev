@@ -1,14 +1,29 @@
-# Default starter for Gridsome
+# Gridsome Hubspot Starter
 
-This is the project you get when you run `gridsome create new-project`.
+A Gridsome starter using Hubspot to create new contacts and deals to your Hubspot.
 
-### 1. Install Gridsome CLI tool if you don't have
+![screenshot](https://raw.githubusercontent.com/jsappme/gridsome-hubspot-starter/master/screenshot.png)
 
-`npm install --global @gridsome/cli`
+## Demo URL
 
-### 2. Create a Gridsome project
+[https://gridsome-hubspot-starter.netlify.app](https://gridsome-hubspot-starter.netlify.app)
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+## Features
+
+- Connect new contact and deal to Hubspot.
+
+## Requirements
+
+- You need an account at [Hubspot](https://hubspot.com)
+
+## Installation
+
+1. Install Gridsome CLI tool if you don't have it: `npm install --global @gridsome/cli`
+1. Clone the repo: `git clone https://github.com/jsappme/gridsome-hubspot-starter.git`
+1. `cd gridsome-hubspot-starter`
+1. `npm install`
+1. `gridsome develop` to start a local dev server at `http://localhost:8080`
+
+## Notes
+
+ - This repo is a fork of this [personal portfolio website](https://github.com/drehimself/gridsome-portfolio-starter).

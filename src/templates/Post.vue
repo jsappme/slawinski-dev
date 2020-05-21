@@ -1,9 +1,21 @@
 <template>
   <Layout>
-    <div>
-      <h1 v-html="$page.post.title" class="text-headline leading-none font-sans font-bold tracking-tight text-4xl sm:text-7xl mb-10"/>
-      <h6 class="mb-10 text-lg" v-html="$page.post.date"/>
-      <div v-html="$page.post.content" class="markdown"/>
+    <div class="container-inner mx-auto my-16">
+      <h1 class="text-4xl font-bold leading-tight">{{ $page.post.title }}</h1>
+      <div class="text-xl text-gray-600 mb-4">{{ $page.post.date }}</div>
+      <div class="flex mb-8 text-sm">
+        <g-link
+          :to="tag.path"
+          v-for="tag in $page.post.tags"
+          :key="tag.id"
+          class="bg-gray-300 rounded-full px-4 py-2 mr-4 hover:bg-green-300">
+          {{ tag.title }}
+        </g-link>
+      </div>
+      <div class="markdown-body mb-8" v-html="$page.post.content" />
+      <div class="mb-8">
+        <g-link to="/blog" class="font-bold uppercase">Back to Blog</g-link>
+      </div>
     </div>
   </Layout>
 </template>
@@ -12,131 +24,25 @@
 query Post ($path: String!) {
   post: post (path: $path) {
     title
+    date (format: "MMMM D, Y")
     content
-    date (format: "D MMMM YYYY")
-
+    tags {
+      title
+      path
+    }
   }
 }
 </page-query>
 
-<style>
-  /*@import 'https://github.githubassets.com/assets/gist-embed-d89dc96f3ab6372bb73ee45cafdd0711.css';*/
-
-  .gist .blob-code-inner {
-    font-size: 1rem;
+<script>
+export default {
+  metaInfo() {
+    return {
+      title: this.$page.post.title
+    }
   }
-  /* Additional vertical padding used by kbd tag. */
-  .py-05 {
-    padding-top: 0.125rem;
-    padding-bottom: 0.125rem;
-  }
+}
+</script>
 
-  .markdown {
-    @apply text-gray-900 leading-tight break-words;
-  }
+<style src="../css/github-markdown.css" />
 
-  .markdown > * + * {
-    @apply mt-0 mb-4;
-  }
-
-  .markdown li + li {
-    @apply mt-10;
-  }
-
-  .markdown li > p + p {
-    @apply mt-6;
-  }
-
-  .markdown p {
-    @apply mb-4 font-body text-2xl;
-  }
-
-  .markdown strong {
-    @apply font-semibold;
-  }
-
-  .markdown a {
-    @apply text-button;
-  }
-
-  .markdown a:hover {
-    @apply text-button underline;
-  }
-
-  .markdown strong a {
-    @apply font-bold;
-  }
-
-  .markdown h1 {
-    @apply leading-tight font-sans text-4xl font-semibold mb-10 mt-6 pb-2;
-  }
-
-  .markdown h2 {
-    @apply leading-tight font-sans text-2xl font-semibold mb-10 mt-6 pb-2;
-  }
-
-  .markdown h3 {
-    @apply leading-snug font-sans text-lg font-semibold mb-10 mt-6;
-  }
-
-  .markdown h4 {
-    @apply leading-none font-sans text-base font-semibold mb-10 mt-6;
-  }
-
-  .markdown h5 {
-    @apply leading-tight font-sans text-sm font-semibold mb-10 mt-6;
-  }
-
-  .markdown h6 {
-    @apply leading-tight font-sans text-sm font-semibold text-gray-600 mb-4 mt-6;
-  }
-
-  .markdown blockquote {
-    @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-600;
-  }
-
-  .markdown code {
-    @apply font-mono text-base inline bg-gray-100 rounded px-1 py-05;
-  }
-
-  .markdown pre {
-    @apply bg-gray-100 overflow-auto rounded p-4;
-  }
-
-  .markdown pre code {
-    @apply block bg-transparent p-0 overflow-visible rounded-none;
-  }
-
-  .markdown ul {
-    @apply font-body text-2xl mb-10 pl-8 list-disc;
-  }
-
-  .markdown ol {
-    @apply font-body text-2xl mb-10 pl-8 list-decimal;
-  }
-
-  .markdown kbd {
-    @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal font-mono shadow;
-  }
-
-  .markdown table {
-    @apply text-base border-gray-600;
-  }
-
-  .markdown th {
-    @apply border py-1 px-3;
-  }
-
-  /*.markdown td {*/
-  /*  @apply border py-1 px-3;*/
-  /*}*/
-
-  /*.markdown div {*/
-  /*  @apply mb-10*/
-  /*}*/
-
-  /* Override pygments style background color. */
-  .markdown .highlight pre {
-    @apply bg-gray-100 !important;
-  }
-</style>
